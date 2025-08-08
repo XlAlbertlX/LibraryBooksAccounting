@@ -19,9 +19,9 @@ class Program {
             switch (menuSection)
             {
                 case 1:
-                    User user = new User();
+                    
                     AuthService authService = new AuthService();
-                    user = authService.AuthMenu();
+                    var user = authService.AuthMenu();
                     if (user == null) return;
         
                     Console.Clear();

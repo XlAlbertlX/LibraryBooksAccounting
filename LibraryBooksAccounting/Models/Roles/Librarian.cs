@@ -1,9 +1,9 @@
 ﻿namespace LibraryBooksAccounting;
 
-public class Employee : User
+public class Librarian : User
 {
+    public override Roles Role => Roles.Librarian;
     public string email { get; set; }
-    public string position { get; set; }
     public string address { get; set; }
     public string phoneNumber { get; set; }
     public DateTime dateOfBirth { get; set; }

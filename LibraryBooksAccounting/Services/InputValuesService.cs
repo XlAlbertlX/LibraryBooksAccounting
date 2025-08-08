@@ -4,7 +4,7 @@ public class InputValuesService
 {
     private ValidationService _validationService = new ValidationService();
     
-    public string InputLogin()
+    public string RegInputLogin()
     {
         string login = "";
         while (!_validationService.IsValid)

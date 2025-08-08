@@ -1,1 +1,32 @@
-[{"UUID":"08d1d9d7-86e0-417a-9eef-d13cea12c533","Login":"admin","Password":"admin","Name":"Albert","Surname":"Kuklin","Role":0},{"UUID":"fff32f5d-0aef-45f4-ac60-a7d6a580d078","Login":"xlalbertlx","Password":"Aboba1221","Name":"Albert","Surname":"Kuklin","Role":1},{"UUID":"c302b27f-dfb7-4f37-909c-16a8489bf601","Login":"asdasd","Password":"Aboba1221","Name":"Albert","Surname":"Kuklin","Role":1}]
+[
+  {
+    "$type": "LibraryBooksAccounting.Reader, LibraryBooksAccounting",
+    "Role": 1,
+    "BooksCount": 0,
+    "UUID": "36b0f75f-52ba-4cbe-bbc5-85bf557f9027",
+    "Login": "xlalbertlx",
+    "Password": "Aboba1221",
+    "Name": "AlbertlX",
+    "Surname": "Kuklin"
+  },
+  {
+    "$type": "LibraryBooksAccounting.Admin, LibraryBooksAccounting",
+    "Role": 0,
+    "AdminName": "ssfsfsdfsf",
+    "UUID": "d9f7fdeb-0be4-489a-b7d3-17fe407ef21e",
+    "Login": null,
+    "Password": null,
+    "Name": null,
+    "Surname": null
+  },
+  {
+    "$type": "LibraryBooksAccounting.Admin, LibraryBooksAccounting",
+    "Role": 0,
+    "AdminName": "ssfsfsdfsf",
+    "UUID": "99d79470-a69c-4617-bfad-34d84fd63f84",
+    "Login": "admin",
+    "Password": "Aboba1221",
+    "Name": "Albert",
+    "Surname": "Kuklin"
+  }
+]

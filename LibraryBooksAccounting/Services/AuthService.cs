@@ -4,14 +4,13 @@ namespace LibraryBooksAccounting;
 
 public class AuthService
 {
-    private UserService userService = new UserService("../../.././DB/users.json");
+    private UserService userService = new UserService("../../.././DB/Users.json");
     private ValidationService validationService = new ValidationService();
     private InputValuesService inputValuesService = new InputValuesService();
     private string? _password;
     private string? _username;
     private AuthMethods _loginMethod;
-    User user = new User();
-    Employee employee = new Employee();
+    Librarian _librarian = new Librarian();
     private bool _loggedIn = false;
     AuthMethods LoginMethod
     {
@@ -53,52 +52,33 @@ public class AuthService
         switch (LoginMethod)
         {
             case AuthMethods.login:
-                while (!_loggedIn)
                 {
-                    PasswordLoginInput();
-                    _loggedIn = Login();
-                    if (!_loggedIn)
+                    User user = null;
+                    while (!_loggedIn)
                     {
-                        bool wultc = WouldUserLikeToContinue();
-                        if (wultc) _loggedIn = false;
-                        else return null;
+                        _loggedIn = Login(out user);
+                        bool wultc = false;
+                        if (!_loggedIn) wultc = WouldUserLikeToContinue();
+                        if (!wultc && !_loggedIn) return null;
                     }
+
+                    return user;
                 }
 
-                return user;
-                break;
             case AuthMethods.registration:
+            {
+                User user = null;
                 while (!_loggedIn)
                 {
-                    RegistrationDataInput();
-                    _loggedIn = Registration();
+                    _loggedIn = Registration(out user);
                 }
                 return user;
                 break;
+            }
         }
-        
         return null;
     }
-
-    private void PasswordLoginInput()
-    {
-        Console.Clear();
-        LanguageService.PrintLine("Authorization");
-        LanguageService.Print("LoginInput");
-        user.Login = Console.ReadLine();
-        LanguageService.Print("PasswordInput");
-        user.Password = Console.ReadLine();
-    }
-
-    private void RegistrationDataInput()
-    {
-        Console.Clear();
-        LanguageService.PrintLine("Registration");
-        user.Login = inputValuesService.InputLogin();
-        user.Name = inputValuesService.InputName();
-        user.Surname = inputValuesService.InputSurname();
-        user.Password = inputValuesService.InputPassword();
-    }
+    
 
     private bool WouldUserLikeToContinue()
     {
@@ -110,35 +90,54 @@ public class AuthService
     }
     
     
-    public bool Login()
+    public bool Login(out User user)
     {
+        Console.Clear();
+        LanguageService.PrintLine("Authorization");
         
-        User _user = userService.GetUserByLogin(user.Login);
+        LanguageService.Print("LoginInput");
+        string login = Console.ReadLine();
+        
+        var _user = userService.GetUserByLogin(login);
+        user = _user;
         if (_user == null)
         {
             FormattedOutput.Print(LanguageService.GetPhraseByKey("Error-NoExistUser"), $"{ConsoleColor.Red}");
             return false;
         }
-
-        if (_user.Password != user.Password)
+        LanguageService.Print("PasswordInput");
+        string password = Console.ReadLine();
+        if (_user.Password != password)
         {
             FormattedOutput.Print(LanguageService.GetPhraseByKey("Error-IncorrectPassword"), $"{ConsoleColor.Red}");
             return false;
         }
         
-        user = _user;
+        
         FormattedOutput.Print(LanguageService.GetPhraseByKey("SuccessfullLogin"), $"{ConsoleColor.Green}");
+        Thread.Sleep(2000);
         return true;
     }
 
-    public bool Registration()
+    public bool Registration(out User Ruser)
     {
-        userService = new UserService("../../.././DB/users.json");
-        user.Role = Roles.Reader;
+        Console.Clear();
+        LanguageService.PrintLine("Registration");
+        string login = inputValuesService.RegInputLogin();
+        string name = inputValuesService.InputName();
+        string surname = inputValuesService.InputSurname();
+        string password = inputValuesService.InputPassword();
+        int booksCount = 3;
+        userService = new UserService("../../.././DB/Users.json");
+        Roles role = Roles.Reader;
         
+        User user = new Reader(login, name, surname, password);
+        Ruser = user;
         userService.AddUser(user);
         
-        FormattedOutput.Print("Вы успешно прошли регистрацию!", $"{ConsoleColor.Green}");
+        
+        FormattedOutput.Print(LanguageService.GetPhraseByKey("SuccessfullLogin"), $"{ConsoleColor.Green}");
+        Thread.Sleep(2000);
         return true;
     }
     
