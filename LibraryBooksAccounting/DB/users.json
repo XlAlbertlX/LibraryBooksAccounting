@@ -1,32 +1,37 @@
 [
   {
-    "$type": "LibraryBooksAccounting.Reader, LibraryBooksAccounting",
-    "Role": 1,
-    "BooksCount": 0,
-    "UUID": "36b0f75f-52ba-4cbe-bbc5-85bf557f9027",
-    "Login": "xlalbertlx",
+    "$type": "LibraryBooksAccounting.Librarian, LibraryBooksAccounting",
+    "Role": 2,
+    "email": null,
+    "address": null,
+    "phoneNumber": null,
+    "dateOfBirth": "0001-01-01T00:00:00",
+    "HireDate": "0001-01-01T00:00:00",
+    "status": false,
+    "workSchedule": null,
+    "UUID": "35a0e491-ea4a-4194-a54e-635612b1ac5f",
+    "Login": "albert2",
     "Password": "Aboba1221",
-    "Name": "AlbertlX",
-    "Surname": "Kuklin"
+    "Name": "Ser-gei",
+    "Surname": "Bbublin"
   },
   {
     "$type": "LibraryBooksAccounting.Admin, LibraryBooksAccounting",
     "Role": 0,
-    "AdminName": "ssfsfsdfsf",
-    "UUID": "d9f7fdeb-0be4-489a-b7d3-17fe407ef21e",
-    "Login": null,
-    "Password": null,
-    "Name": null,
-    "Surname": null
-  },
-  {
-    "$type": "LibraryBooksAccounting.Admin, LibraryBooksAccounting",
-    "Role": 0,
-    "AdminName": "ssfsfsdfsf",
     "UUID": "99d79470-a69c-4617-bfad-34d84fd63f84",
     "Login": "admin",
     "Password": "Aboba1221",
     "Name": "Albert",
     "Surname": "Kuklin"
+  },
+  {
+    "$type": "LibraryBooksAccounting.Reader, LibraryBooksAccounting",
+    "Role": 1,
+    "BooksCount": 999,
+    "UUID": "36b0f75f-52ba-4cbe-bbc5-85bf557f9027",
+    "Login": "xlalbertlx",
+    "Password": "Aboba1221",
+    "Name": "jaklgjs",
+    "Surname": "Куклин"
   }
 ]

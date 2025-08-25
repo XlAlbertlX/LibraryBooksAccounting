@@ -1,4 +1,5 @@
 ﻿using LibraryBooksAccounting;
+using LibraryBooksAccounting.Routes;
 
 namespace LibraryBooksAccounting;
 
@@ -25,7 +26,7 @@ class Program {
                     if (user == null) return;
         
                     Console.Clear();
-                    Console.WriteLine($"Добро пожаловать на главный экран, {user.Name}, ваша роль {user.Role}!");
+                    RolesRouter.Route(user.Role);
                     break;
                 case 2:
                 {

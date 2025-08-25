@@ -4,23 +4,16 @@ namespace LibraryBooksAccounting;
 
 public class ValidationService
 {
-    private UserService _userService = new UserService("../../.././DB/Users.json");
     public bool IsValid { get; private set; }
     public string ErrorMessage { get; private set; }
     
     
     public void ValidateLogin(string login)
     {
+        IsValid = false;
         if (string.IsNullOrEmpty(login))
         {
             ErrorMessage = LanguageService.GetPhraseByKey("Error-RequiredField");
-            IsValid = false;
-            return;
-        }
-
-        if (_userService.UserExists(login))
-        {
-            ErrorMessage = LanguageService.GetPhraseByKey("Error-UserAlreadyExist");
             IsValid = false;
             return;
         }
@@ -35,8 +28,14 @@ public class ValidationService
         IsValid = true;
     }
 
-    public void ValidateName(string name)
+    public void ValidateName(string name, bool AllowEmpty = false)
     {
+        IsValid = false;
+        if (AllowEmpty)
+        {
+            IsValid = true;
+            return;
+        }
         if (string.IsNullOrEmpty(name))
         {
             ErrorMessage = LanguageService.GetPhraseByKey("Error-RequiredField");
@@ -44,7 +43,7 @@ public class ValidationService
             return;
         }
         
-        if (!Regex.IsMatch(name, @"^[А-Яа-яЁёA-Za-z]{2,15}(-[А-Яа-яЁёA-Za-z]{2,15})?$"))
+        if (!Regex.IsMatch(name, @"^[А-Яа-яЁёA-Za-z]{2,30}?$"))
         {
             ErrorMessage = LanguageService.GetPhraseByKey("Error-NameRequirements");
             IsValid = false;
@@ -55,8 +54,14 @@ public class ValidationService
         
     }
     
-    public void ValidatePassword(string pass)
+    public void ValidatePassword(string pass, bool AllowEmpty = false)
     {
+        if (AllowEmpty)
+        {
+            IsValid = true;
+            return;
+        }
+        IsValid = false;
         if (!Regex.IsMatch(pass, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,30}$"))
         {
             ErrorMessage = LanguageService.GetPhraseByKey("Error-PassRequirements");
@@ -67,8 +72,14 @@ public class ValidationService
         IsValid = true;
         
     }
-    public void ValidatePassword(string pass, string repass)
+    public void ValidatePassword(string pass, string repass, bool AllowEmpty = false)
     {
+        if (AllowEmpty)
+        {
+            IsValid = true;
+            return;
+        }
+        IsValid = false;
         if (pass != repass)
         {
             ErrorMessage = LanguageService.GetPhraseByKey("Error-PasswordsDoNotMatch");
@@ -80,8 +91,14 @@ public class ValidationService
         
     }
 
-    public void ValidateRole(string role)
+    public void ValidateRole(string role, bool AllowEmpty = false)
     {
+        if (AllowEmpty)
+        {
+            IsValid = true;
+            return;
+        }
+        IsValid = false;
         int IntRole;
         try
         {

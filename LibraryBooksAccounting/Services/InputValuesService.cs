@@ -7,30 +7,32 @@ public class InputValuesService
     public string RegInputLogin()
     {
         string login = "";
-        while (!_validationService.IsValid)
+        do
         {
-            
+
             LanguageService.Print("LoginInput");
             login = Console.ReadLine();
-            
+
             _validationService.ValidateLogin(login);
 
             if (!_validationService.IsValid)
             {
                 FormattedOutput.Print(_validationService.ErrorMessage, $"{ConsoleColor.Red}");
             }
-        }
+        } while (!_validationService.IsValid);
         return login.ToLower();
     }
     
-    public string InputName()
+    public string InputName(bool AllowEmpty = false)
     {
         string name = "";
+        
         do
         {
+            
             LanguageService.Print("NameInput");
             name = Console.ReadLine();
-            _validationService.ValidateName(name);
+            _validationService.ValidateName(name, AllowEmpty);
 
             if (!_validationService.IsValid)
             {
@@ -40,14 +42,15 @@ public class InputValuesService
         return name;
     }
     
-    public string InputSurname()
+    public string InputSurname(bool AllowEmpty = false)
     {
         string name = "";
+       
         do
         {
             LanguageService.Print("SurnameInput");
             name = Console.ReadLine();
-            _validationService.ValidateName(name);
+            _validationService.ValidateName(name, AllowEmpty);
 
             if (!_validationService.IsValid)
             {
@@ -57,17 +60,18 @@ public class InputValuesService
         return name;
     }
     
-    public string InputPassword()
+    public string InputPassword(bool AllowEmpty = false)
     {
         string pass = "";
         string repass = "";
+       
         
         do
         {
 
             LanguageService.Print("PasswordInput");
             pass = Console.ReadLine();
-            _validationService.ValidatePassword(pass);
+            _validationService.ValidatePassword(pass, AllowEmpty);
             if (!_validationService.IsValid)
             {
                 FormattedOutput.Print(_validationService.ErrorMessage, $"{ConsoleColor.Red}");

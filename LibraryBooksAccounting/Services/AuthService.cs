@@ -5,12 +5,10 @@ namespace LibraryBooksAccounting;
 public class AuthService
 {
     private UserService userService = new UserService("../../.././DB/Users.json");
-    private ValidationService validationService = new ValidationService();
     private InputValuesService inputValuesService = new InputValuesService();
     private string? _password;
     private string? _username;
     private AuthMethods _loginMethod;
-    Librarian _librarian = new Librarian();
     private bool _loggedIn = false;
     AuthMethods LoginMethod
     {
@@ -140,6 +138,7 @@ public class AuthService
         Thread.Sleep(2000);
         return true;
     }
+
     
     
 }
